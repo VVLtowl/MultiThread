@@ -74,10 +74,13 @@ namespace ex02_MultiThread
 			int sum1 = 0;
 			int sum2 = 0;
 
-			std::thread thread1(Work, N / 2);
-			std::thread thread2(Work, N / 2);
+			std::thread thread1(Work, N / 2, sum1);
+			std::thread thread2(Work, N / 2, sum2);
 
-			return 0;
+			thread1.join();
+			thread2.join();
+
+			return sum1 + sum2;
 		}
 	}
 }
