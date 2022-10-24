@@ -38,7 +38,7 @@ namespace ex02_MultiThread
 		* @param		[in]times: ‰ñ”
 		* @param		[out]sum: ’l‚ğŠi”[‚·‚é•Ï”
 		********************************************************/
-		void Work(int times,int& sum)
+		void Work(int times,int* sum)
 		{
 			for (int i = 0; i < times; i++)
 			{
@@ -46,7 +46,7 @@ namespace ex02_MultiThread
 				int y = Random(MIN, MAX);
 				int z = Random(MIN, MAX);
 
-				sum += Tarai(x, y, z);
+				*sum += Tarai(x, y, z);
 			}
 		}
 
@@ -74,8 +74,8 @@ namespace ex02_MultiThread
 			int sum1 = 0;
 			int sum2 = 0;
 
-			std::thread thread1(Work, N / 2, sum1);
-			std::thread thread2(Work, N / 2, sum2);
+			std::thread thread1(Work, N / 2, &sum1);
+			std::thread thread2(Work, N / 2, &sum2);
 
 			thread1.join();
 			thread2.join();
